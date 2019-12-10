@@ -4,18 +4,16 @@
 #include <algorithm>
 using namespace std;
 
-int largest = -9999;
-
-// Arr is the array, i is the parent index, and N is the size of
+// Arr is the array, i is the parent index, 
+// and N is the size of
 // the array 'Arr'
 void max_heapify(int Arr[], int i, int N) {
-    int left = 2 * i;               // left chid index
-    int right = 2 * i + 1;          // right child index
+    int left = i << 1;               // left chid index
+    int right = ( i << 1 ) + 1;          // right child index
+    int largest = i;
 
-    if ( left <= N and Arr[left] > Arr[i] )
+    if ( left <= N and Arr[left] > Arr[largest] )
         largest = left;
-    else
-        largest = i;
     if ( right <= N and Arr[right] > Arr[largest] )
         largest = right;
     if ( largest != i ) {
@@ -29,14 +27,12 @@ void build_maxheap(int Arr[], int N) {
 }
 
 void min_heapify(int Arr[], int i, int N) {
-    int left = 2 * i;
-    int right = 2 * i + 1;
-    int smallest;
+    int left = i << 1;
+    int right = ( i << 1 ) + 1;
+    int smallest = i;
 
-    if ( left <= N and Arr[left] < Arr[i] )
+    if ( left <= N and Arr[left] < Arr[smallest] )
         smallest = left;
-    else
-        smallest = i;
     if ( right <= N and Arr[right] < Arr[smallest] )
         smallest = right;
     if ( smallest != i ) {
